@@ -7,6 +7,7 @@ set -e
 : ${ELASTICSEARCH_INSECURE:=false}
 : ${DUE_SHARDS:=1}
 : ${DUE_REPLICAS:=1}
+: ${INDEX_PREFIX_SEP:="_"}
 
 # protocol: http or https?
 if [[ $ELASTICSEARCH_USE_SSL == true ]]; then
@@ -48,7 +49,7 @@ if [[ -z "$INDEX_PREFIX" ]]; then
   PREFIX=''
   echo -e "not using any prefix"
 else
-  PREFIX="${INDEX_PREFIX}_"
+  PREFIX="${INDEX_PREFIX}${INDEX_PREFIX_SEP}"
   echo -e "going to use prefix: '$PREFIX'"
 fi
 
